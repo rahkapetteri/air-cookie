@@ -3,7 +3,7 @@
  * @Author: Timi Wahalahti
  * @Date:   2021-08-20 14:17:57
  * @Last Modified by:   Jesse Raitapuro (Digiaargh)
- * @Last Modified time: 2024-03-05 22:45:00
+ * @Last Modified time: 2024-04-22 18:00:00
  *
  * @package air-cookie
  */
@@ -28,7 +28,7 @@ function get_settings() {
   $settings = [
     'revision'              => $categories_version, // use version number to invalidate if categories change
     'cookie'                => [
-      'name' => 'air_cookie',
+      'name' => 'evastehallinta',
       'expiresAfterDays' => 182, // in days, 182 days = 6 months
     ],
 
@@ -153,13 +153,6 @@ function get_cookie_categories() {
       'description' => maybe_get_polylang_translation( 'category_necessary_description' ),
     ],
     [
-      'key'         => 'functional',
-      'enabled'     => false, // it is advised to have other categories disabled by default
-      'readonly'    => false, // user should have always control over other categories
-      'title'       => maybe_get_polylang_translation( 'category_functional_title' ),
-      'description' => maybe_get_polylang_translation( 'category_functional_description' ),
-    ],
-    [
       'key'         => 'analytics',
       'enabled'     => false, // it is advised to have other categories disabled by default
       'readonly'    => false, // user should have always control over other categories
@@ -196,11 +189,39 @@ function get_cookie_categories_for_sections( $lang ) { // phpcs:ignore
   foreach ( $cookie_categories as $group ) {
     $key = $group['key'];
      // Add text strings for the modals.
-    $return[] = [
-    'title'       => $group['title'],
-    'description' => $group['description'],
-    'linkedCategory'      => $key,
-    ];
+
+    if ( $key !== 'analytics' ) {
+      $return[] = [
+        'title'               => $group['title'],
+        'description'         => $group['description'],
+        'linkedCategory'      => $key,
+        ];
+    } 
+
+    else {
+      $return[] = [
+        'title'               => $group['title'],
+        'description'         => $group['description'],
+        'linkedCategory'      => $key,
+        'cookieTable'         => [
+          'caption' => 'Evästetaulukko',
+          'headers' => [
+            'name'     => 'Eväste',
+            'domain'   => 'Domain',
+            'desc'     => 'Selite',
+            'duration' => 'Tallennusaika',
+          ],
+          'body'      => [
+              [
+              'name'     => '_koko_analytics_pages_viewed',
+              'domain'   => 'domain',
+              'desc'     => 'Tunnistaa sivustolle palaavan käyttäjän. WordPress-sivustolle paikallisesti asennettu <a href="https://www.kokoanalytics.com/">Koko Analyticsin</a> asettama eväste.',
+              'duration' => '6 tuntia',
+            ]
+          ]
+        ]
+      ];
+    }
   }
 
   return $return;

@@ -1,17 +1,18 @@
 <?php
 /**
- * Plugin Name: Air cookie
- * Plugin URI: https://github.com/digitoimistodude/air-cookie
- * Description: Simple cookie banner and management.
- * Version: 1.2.6
- * Author: Digitoimisto Dude Oy
- * Author URI: https://www.dude.fi
+ * Plugin Name: Simppeli evästehallinta.
+ * Description: Evästebanneri sivuston kävijäseurantaa ja upotettua sisältöä varten.
+ * Version: 1.0.0
+ * Author: Digiaargh
+ * Author URI: https://www.digiaargh.fi
  * Requires at least: 5.5
  * Tested up to: 6.4.3
  * License: GPL-3.0+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * @Modified by:   Jesse Raitapuro (Digiaargh)
  * @Modified time: 2024-04-22 16:30:00
+ * @Original author: Digitoimisto Dude Oy
+ * @Original author URI: https://www.dude.fi
  *
  * @package air-cookie
  */
@@ -29,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 0.1.0
  */
 function get_plugin_version() {
-  return 124;
+  return 100;
 } // end plugin_version
 
 /**
